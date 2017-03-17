@@ -27,9 +27,10 @@ public class Inventory : MonoBehaviour
         itm.gameObject.SetActive(false);
         itm.SetParent(transform);
     }
-    public void RemoveTopItem()
+    public Transform RemoveTopItem()
     {
         return RemoveItemAt(_storage.Count - 1);
+       
     }
     public Transform RemoveItemAt(int index)
     {

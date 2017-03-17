@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ public class PlayerMove : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         _moveVector.x = Input.GetAxisRaw("Horizontal");
         _moveVector.z = Input.GetAxisRaw("Vertical");
 
@@ -28,6 +29,15 @@ public class PlayerMove : MonoBehaviour {
         }
 
         Move(_moveVector);
+        if (_moveVector.magnitude > 0)
+        {
+            transform.rotation = Quaternion.LookRotation(_moveVector);
+        }
+    }
+
+    public Vector3 GetMoveVector()
+    {
+        return _moveVector;
     }
 
     void OnGUI()
